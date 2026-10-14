@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');const {build,point,project,arcs}=require('../static/geomap.js');
+const centers={CZ:{lat:49.75,lon:15.5},US:{lat:38,lon:-97},DE:{lat:51,lon:9}};
+const e=(id,user,country,time,label='Review')=>({id,user,country,time,label,score:10,ip:'192.0.2.1'});
+assert.equal(point({country:'US',latitude:null,longitude:null},centers).approx,true);
+assert.equal(point({country:'US',latitude:0,longitude:0},centers).approx,false);
+assert.equal(point({country:'Unknown'},centers),null);
+assert.equal(point({country:'US',latitude:91,longitude:0},centers).approx,true);
+assert.deepEqual(project(0,0),[500,250]);assert.deepEqual(project(90,-180),[0,0]);
+let events=[e('1','Alice','CZ','2026-10-01T08:00:00Z'),e('2','alice','US','2026-10-01T09:00:00Z','Suspicious'),e('3','Bob','US','2026-10-01T09:01:00Z')];
+let map=build(events,events,centers);assert.equal(map.points.length,2);assert.equal(map.routes.length,1);assert.equal(map.points.find(p=>p.country==='US').events.length,2);assert.equal(map.routes[0].top.id,'2');assert.equal(map.approximate,3);
+map=build(events.slice(1),events,centers);assert.equal(map.routes.length,0,'Filters must not invent missing endpoints');
+let interrupted=[events[0],e('x','Alice','Unknown','2026-10-01T08:30:00Z'),events[1]];map=build([events[0],events[1]],interrupted,centers);assert.equal(map.routes.length,0,'Do not bridge an intermediate unlocated or filtered login');
+let stale=[events[0],e('s','Alice','US','2026-10-05T08:00:00Z')];assert.equal(build(stale,stale,centers).routes.length,0);
+assert.equal(arcs({x:990,y:200},{x:10,y:180}).length,2,'Split antimeridian connections');
+console.log('Geomap checks passed: coordinates, country fallback, grouping, real consecutive-user transitions, filter endpoints, missing locations, 72-hour limit and date-line splitting.');

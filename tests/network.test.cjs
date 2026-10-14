@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {build}=require('../static/network.js');
+const event=(id,user,ip,label,score)=>({id,user,ip,label,score,time:'2026-10-03T09:00:00Z',country:'US',status:'Failure'});
+const rows=[event('1','Alice','192.0.2.1','Review',10),event('2','alice','192.0.2.1','Confirmed',100),event('3','Bob','192.0.2.1','Suspicious',90),event('4','Bob','192.0.2.2','Excluded',0)];
+let g=build(rows);
+assert.equal(g.edges.length,3);assert.equal(g.users.length,2);assert.equal(g.ips.length,2);
+assert.equal(g.edges[0].count,2);assert.equal(g.edges[0].top.id,'2');
+assert.equal(g.ips.find(n=>n.value==='192.0.2.1').edges.length,2);
+g=build(rows,{kind:'ip',value:'192.0.2.1'});assert.equal(g.users.length,2);assert.equal(g.edges.length,2);
+g=build(rows,{kind:'user',value:'ALICE'});assert.equal(g.edges.length,1);assert.equal(g.edges[0].count,2);
+g=build(rows,null,1);assert.equal(g.shown,1);assert.equal(g.total,3);assert.equal(g.edges[0].top.label,'Confirmed');
+console.log('Graph checks passed: case-insensitive users, shared nodes, aggregate counts, confirmed precedence, focus and truncation.');

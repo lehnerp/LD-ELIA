@@ -1,0 +1,2 @@
+# Optional: offline GeoIP lookup with your own licensed MaxMind MMDB (see README).
+geoip2>=4.8,<6

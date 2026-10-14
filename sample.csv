@@ -1,0 +1,6 @@
+Date (UTC),Username,IP address,Country,Status,Application,isInteractive,Risk level (aggregate),Risk state
+2026-10-01T08:00:00Z,alice@example.com,192.0.2.10,CZ,Success,Office 365,true,none,none
+2026-10-01T08:25:00Z,alice@example.com,198.51.100.21,US,Success,Office 365,true,high,atRisk
+2026-10-01T09:00:00Z,bob@example.com,203.0.113.7,DE,Success,Azure Portal,true,high,confirmedCompromised
+2026-10-01T10:00:00Z,carol@example.com,192.0.2.30,SK,Success,Teams,true,none,none
+2026-10-01T11:00:00Z,dave@example.com,198.51.100.20,GB,Failure,Office 365,true,none,none

@@ -1,0 +1,23 @@
+Date (UTC),Username,IP address,Country,Status,Application,isInteractive,Risk level (aggregate),Risk state,Device ID
+2026-10-01T08:00:00Z,alice@example.com,192.0.2.10,CZ,Success,Microsoft 365,true,none,none,known-device-alice
+2026-10-01T08:01:00Z,bob@example.com,192.0.2.11,SK,Success,Microsoft 365,true,none,none,known-device-bob
+2026-10-01T08:02:00Z,carol@example.com,192.0.2.12,CZ,Success,Microsoft 365,true,none,none,known-device-carol
+2026-10-01T08:03:00Z,dave@example.com,192.0.2.13,SK,Success,Microsoft 365,true,none,none,known-device-dave
+2026-10-03T09:00:00Z,alice@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:01:00Z,bob@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:02:00Z,carol@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:03:00Z,alice@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:04:00Z,bob@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:05:00Z,carol@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:06:00Z,alice@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:07:00Z,bob@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:08:00Z,carol@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:09:00Z,alice@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:10:00Z,bob@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:11:00Z,carol@example.com,198.51.100.44,US,Failure,Microsoft 365,true,none,none,
+2026-10-03T09:12:00Z,alice@example.com,198.51.100.44,US,Success,Microsoft 365,true,high,atRisk,new-device
+2026-10-03T09:15:00Z,bob@example.com,198.51.100.44,US,Success,Azure Portal,true,high,confirmedCompromised,new-device
+2026-10-03T09:18:00Z,dave@example.com,203.0.113.7,DE,Success,Teams,true,none,none,known-device-dave
+2026-10-03T09:20:00Z,carol@example.com,192.0.2.12,CZ,Success,Teams,true,none,none,known-device-carol
+2026-10-03T09:24:00Z,alice@example.com,203.0.113.70,GB,Success,Exchange Online,true,medium,atRisk,new-device
+2026-10-03T09:30:00Z,eve@example.com,203.0.113.80,,Failure,Microsoft 365,true,,,
